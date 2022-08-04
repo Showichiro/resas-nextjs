@@ -1,8 +1,16 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
+import 'styles/global.scss';
+import type { AppProps } from 'next/app';
+import { QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { ReactQueryClient } from 'utils/ReactQueryClient';
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  return (
+    <QueryClientProvider client={ReactQueryClient.instance}>
+      <Component {...pageProps} />
+      {process.env.NODE_ENV === 'development' && <ReactQueryDevtools />}
+    </QueryClientProvider>
+  );
 }
 
-export default MyApp
+export default MyApp;
