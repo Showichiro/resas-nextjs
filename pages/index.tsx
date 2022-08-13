@@ -32,7 +32,7 @@ const Index = ({ result }: IndexProps) => {
 
 export default Index;
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const url = process.env.PREFECTURES as string;
   const response = await HttpClient.get(url).json<Prefectures.Response>();
   const { result } = response;
